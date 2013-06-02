@@ -1,4 +1,5 @@
 $( function () {
+    // require js/history.js
     // @see .dev file for usage example
     all_strokes = [];
     gesture = $.gesture()               // gesture recognition instance
@@ -58,7 +59,22 @@ $( function () {
                 gesture.strokes = all_strokes.slice(current);
                 eq += gesture.recognize(true).name[0];
                 eq = eq.replace('--', '=');
-                if (eq[eq.length - 1] !== '=') jellyfishAudio.stingSequence(eq[eq.length - 1]);
+
+                if (eq.indexOf('=')!=-1) {
+                    try {
+                        eq = eq.slice(0, -1);
+                        eq = eq + '=' + eval(eq);
+                        addHistory(eq);
+                    } catch (err) {
+                        console.log(err);
+                        eq += '=';
+                    }
+                    jellyfishAudio.stingSequence(eq);
+                }
+                else {
+                    jellyfishAudio.stingSequence(eq[eq.length - 1]);
+                }
+
                 $('#equation').text(eq);
             } );
     $( '.container .row .span8' ).prepend( board );
@@ -91,3 +107,4 @@ $( function () {
     });
 } );
 
+// vim: expandtab tabstop=4 shiftwidth=4:
