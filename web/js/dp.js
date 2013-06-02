@@ -1,5 +1,4 @@
 var calcMaxScore = (function() {
-
   var strokes;
 
   var setStrokes = function (input) {
@@ -15,10 +14,8 @@ var calcMaxScore = (function() {
   var dpTable = {};
   var dpPath = {};
 
-
   var getDpScore = function (start, end) {
     var dp = function (start, end) {
-
       if (dpTable[[start,end]] != undefined) {
         return dpTable[[start,end]];
       }
@@ -51,18 +48,16 @@ var calcMaxScore = (function() {
   var getDpPath = function (start, end) { 
     var dpPathSplit = [];
     var dfs = function (start, end) {
-      console.log(start + ',' + end);
       if (dpPath[[start, end]] == -1) {
         return;
       }
       if (start == end) {
-        dpPathSplit.push(start);  
         return;
       }
       var split = dpPath[[start, end]];
-      getDpPath(start, split);
+      dfs(start, split);
       dpPathSplit.push(split);
-      getDpPath(split+1, end);
+      dfs(split+1, end);
     }
     dfs(start, end);
     return dpPathSplit;
