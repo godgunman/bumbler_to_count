@@ -40,3 +40,9 @@ var closeModal = function(){
 $('#history1').click(retrieveHistory);
 $('#history2').click(retrieveHistory);
 $('#modal-btn-close').click(closeModal);
+
+addHistory('1-1=0');
+addHistory('0+1+4=5');
+addHistory('1+1+1=3');
+addHistory('32+3+9*2=53');
+
