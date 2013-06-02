@@ -9,7 +9,7 @@ var calcMaxScore = (function() {
   var guess = function (strokes_guess) {
       gesture.strokes = strokes_guess;
       var result = gesture.recognize(true);
-      return result.score;
+      return result ? result.score : 0;
   }
 
   var dpTable = {};
