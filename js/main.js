@@ -57,9 +57,8 @@ $( function () {
                 }
                 gesture.strokes = all_strokes.slice(current);
                 eq += gesture.recognize(true).name[0];
-                console.log(eq);
                 eq = eq.replace('--', '=');
-                console.log(eq);
+                if (eq[eq.length - 1] !== '=') jellyfishAudio.stingSequence(eq[eq.length - 1]);
                 $('#equation').text(eq);
             } );
     $( '.container .row .span8' ).prepend( board );
