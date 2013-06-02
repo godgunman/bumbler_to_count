@@ -14,10 +14,21 @@ var jellyfishAudio = (function() {
 
   var stingSequence = function(formula) {
     formula = delWhiteSpace(formula);
-    //FIXME asynchronous
+
+    var FUNC = [];
     for (s in formula) {
       stingWord(s);
+      FUNC.push(function() {
+        return stingWord(s);
+      });
     }
+
+    var next = function() {
+      $(document).dequeue("myQueue");
+    }
+    $(document).queue("myQueue",FUNC);
+    next();
+
   };
 
   var sting = function (option) {
@@ -28,6 +39,9 @@ var jellyfishAudio = (function() {
     audio.play();
     return setTimeout(function() {
       audio.pause();
+      if (next) {
+        next();
+      }
     }, duration * 1000);
   };
 

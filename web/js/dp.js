@@ -1,4 +1,16 @@
-var calcMaxScore = (function(strokes) {
+var calcMaxScore = (function() {
+
+  var strokes;
+
+  var setStrokes = function (input) {
+      strokes = input;
+  };
+
+  var guess = function (strokes_guess) {
+      gesture.strokes = strokes_guess;
+      var result = gesture.recognize(true);
+      return result.score;
+  }
 
   var getDpScore = function (start, end) {
     var dpTable = {};
@@ -60,5 +72,6 @@ var calcMaxScore = (function(strokes) {
   return {
     'getDpPath':getDpPath,
     'getDpScore':getDpScore,
+    'setStrokes':setStrokes,
   };
 }());
