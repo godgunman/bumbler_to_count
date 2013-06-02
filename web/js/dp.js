@@ -23,16 +23,15 @@ var calcMaxScore = (function(strokes) {
         var tmp = dp(start,i) + dp(i+1,end);
         if (tmp > score) {
           score = tmp;
-          dpPath = [[start, end]] = i
+          dpPath[[start, end]] = i
         }
       }
       var tmp = guess(strokes.slice(start, end+1));
       if (tmp > score) {
         score = tmp;
-        dpPath = [[start, end]] = -1;
+        dpPath[[start, end]] = -1;
       }
       dpTable[[start,end]] = score;
-
       return score;
     };
     return dp(start, end);
