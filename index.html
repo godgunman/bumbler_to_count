@@ -15,11 +15,18 @@
         src: url('font/w3.ttf');
       }
       body {
+        font-family: '流風體';
+        font-size: 120%;
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
       .navbar .brand {
-        font-family: '流風體';
-        font-size: 200%;
+        font-family: 'Helvetica Neue', 'Helvetica', 'Sans-Serif', '流風體', 'SimHei';
+        font-size: 250%;
+        transform: translate(0px, -6px);
+        -webkit-transform: translate(0px, -6px);
+      }
+      .nav .nav-header {
+        font-size: 20px;
       }
     </style>
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -48,18 +55,16 @@
 
     <div class="container">
       <div class="row">
-        <div class="span8">
-
-<!--            <canvas id="panel" tabindex="1" width="600" height="400" style="width: 960px; height:
-              400px; background-color: rgb(238, 238, 238); border: 1px solid rgb(204, 204,
-              204); background-position: initial initial; background-repeat: initial
-              initial;"></canvas>-->
-
+        <div id="canvas-holder" class="span8">
+          <!--
+          <canvas id="panel" tabindex="1" width="600" height="400" style="width: 960px; height:400px; background-color: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); background-position: initial initial; background-repeat: initial initial;">
+          </canvas>
+          -->
         </div>
 
         <div class="span2 offset2">
           <ul id="historyListHeader" class="nav nav-list">
-		    <li class="nav-header">History</li>
+		    <li class="nav-header">邦伯的回憶錄</li>
 		  </ul>
           <ul id="historyList" class="nav nav-list">
             <li id="history2"><a href="#">3*2=6</a></li>
@@ -69,12 +74,15 @@
        </div>
 
       <div class="row">
+        <!--
         <div id="equation" class="span9" style="font-size:32px;background-color:#ddd;height:50px;line-height:50px;">
             1+3+5*8=44
         </div>
-        <div class="span3" style="height:50px;"> 
-          <button id="speak" class="btn btn-primary" style="margin-top:10px;">Speak </button>
-        </div>
+        -->
+        <form class="form-inline span8">
+          <input id="equation" type="text" disabled="disabled" class="span7">
+          <button id="speak" class="btn btn-primary">Speak</button>
+        </form>
       </div>
     </div> <!-- /container -->
 

@@ -59,9 +59,9 @@ $( function () {
                 console.log(eq);
                 eq = eq.replace('--', '=');
                 console.log(eq);
-                $('#equation').text(eq);
+                $('#equation').val(eq);
             } );
-    $( '.container .row .span8' ).prepend( board );
+    $( '#canvas-holder' ).prepend( board );
 
     // load json
     $.getJSON('data/model.json', function (data) {
@@ -84,8 +84,8 @@ $( function () {
 
     // bind event
     $('#speak').click( function() {
-        console.log($('#equation').text());
-        jellyfishAudio.stingSequence($('#equation').text());
+        console.log($('#equation').val());
+        jellyfishAudio.stingSequence($('#equation').val());
     });
 } );
 
