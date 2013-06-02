@@ -24,7 +24,6 @@ var jellyfishAudio = (function() {
     for (i in formula) {
       var s = formula[i];
       if (isNaN(s)) {
-
         if (hasNum) {
           splited.push(numVal);
         }

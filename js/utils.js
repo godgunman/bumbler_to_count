@@ -78,6 +78,8 @@ var numTrans = function(num){
 				}
 			}
 		}
+		if(numLen!=1 && speakArr[speakArr.length-1]==0)
+			speakArr.pop();
 		return speakArr;
 	}
 };

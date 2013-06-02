@@ -103,7 +103,8 @@ $( function () {
     $.getJSON('data/eq.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
 
     // bind event
-    $('#speak').click( function() {
+    $('#speak').click( function(e) {
+        e.preventDefault();
         console.log($('#equation').val());
         jellyfishAudio.stingSequence($('#equation').val());
     });
