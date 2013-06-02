@@ -12,7 +12,7 @@ var jellyfishAudio = (function() {
     }
   };
 
-  var stingSequence(formula) {
+  var stingSequence = function(formula) {
     formula = delWhiteSpace(formula);
     //FIXME asynchronous
     for (s in formula) {
