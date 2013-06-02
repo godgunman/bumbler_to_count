@@ -73,7 +73,8 @@ $( function () {
                     jellyfishAudio.stingSequence(eq);
                 }
                 else {
-                    jellyfishAudio.stingSequence(eq[eq.length - 1]);
+                    console.log(eq[eq.length - 1]);
+                    jellyfishAudio.stingWord(eq[eq.length - 1]);
                 }
 
                 $('#equation').val(eq);

@@ -14,6 +14,10 @@ var jellyfishAudio = (function() {
 
 	var stingSequence = function(formula) {
 		formula = delWhiteSpace(formula);
+    if (!formula) {
+      return ;
+    }
+
 		numSeq = formula.split(/[+=\-\*\/]/gi);
 		signSeq = formula.match(/[+=\-\*\/]/gi);
 		var FUNC = [];
@@ -38,25 +42,30 @@ var jellyfishAudio = (function() {
 		return function () { sting(MAP[w])};
 	}
 
-	var sting = function (option) {
-		var start = option['start'];
-		var duration = option['duration'];
+  var sting = function (option) {
+    if (!option || option.hasOwnProperty('start') ==false 
+                || option.hasOwnProperty('duration') == false ) {
+      return;
+    }
 
-		audio.currentTime = start; 
-		audio.play();
-		return setTimeout(function() {
-			audio.pause();
-			if (typeof(next) != 'undefined') {
-				next();
-			}
-		}, duration * 1000);
-	};
+    var start = option['start'];
+    var duration = option['duration'];
 
-	return {
-		'sting': sting,
-			'stingSequence': stingSequence,
-			'stingWord': stingWord,
-			'audio': audio,
-	};
+    audio.currentTime = start; 
+    audio.play();
+    return setTimeout(function() {
+      audio.pause();
+      if (typeof(next) != 'undefined') {
+        next();
+      }
+    }, duration * 1000);
+  };
+
+  return {
+    'sting': sting,
+    'stingSequence': stingSequence,
+    'stingWord': stingWord,
+    'audio': audio,
+  };
 
 }());
