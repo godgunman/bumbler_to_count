@@ -1,4 +1,8 @@
   var MAP = {
+    '0': {
+      'start': 0,
+      'duration': 1
+    },
     '1': {
       'start': 0,
       'duration': 1
@@ -52,6 +56,10 @@
       'duration': 1
     },
     '*': {
+      'start': 3,
+      'duration': 1
+    },
+    '=': {
       'start': 3,
       'duration': 1
     },
