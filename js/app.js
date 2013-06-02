@@ -24,6 +24,10 @@ var jellyfishAudio = (function() {
 		for (i in numSeq) {
 			var s = numSeq[i];
 			var completeNum = numTrans(parseInt(s));
+			if(numSeq.length == signSeq.length){
+				if(i == numSeq-1)
+					FUNC.push(bumblerSpeak('neg'));
+			}
 			for ( x in completeNum ){
 				FUNC.push(bumblerSpeak(completeNum[x]));
 			}
