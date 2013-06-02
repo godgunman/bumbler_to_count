@@ -12,27 +12,25 @@ var calcMaxScore = (function() {
       return result.score;
   }
 
-  var getDpScore = function (start, end) {
-    var dpTable = {};
-    var dpPath = {};
+  var dpTable = {};
+  var dpPath = {};
 
+
+  var getDpScore = function (start, end) {
     var dp = function (start, end) {
 
-      if (dpTable[[start,end]]) {
+      if (dpTable[[start,end]] != undefined) {
         return dpTable[[start,end]];
-      }
-      if (start > end) {
-        return 0;
       }
 
       if (start == end) {
         dpPath[[start, end]] = start;
-        dbTable[[start, end]] = guess(strokes.slice(start, end+1)) ;
-        return dbTable[[start, end]];
+        dpTable[[start, end]] = guess(strokes.slice(start, end+1)) ;
+        return dpTable[[start, end]];
       }
 
       var score = 0;
-      for (var i = start; i<=end; i++) {
+      for (var i = start; i<end; i++) {
         var tmp = dp(start,i) + dp(i+1,end);
         if (tmp > score) {
           score = tmp;
@@ -53,14 +51,15 @@ var calcMaxScore = (function() {
   var getDpPath = function (start, end) { 
     var dpPathSplit = [];
     var dfs = function (start, end) {
-      if (start>end) {
+      console.log(start + ',' + end);
+      if (dpPath[[start, end]] == -1) {
         return;
       }
       if (start == end) {
         dpPathSplit.push(start);  
         return;
       }
-      var split = dpTable[[start, end]];
+      var split = dpPath[[start, end]];
       getDpPath(start, split);
       dpPathSplit.push(split);
       getDpPath(split+1, end);
@@ -70,8 +69,16 @@ var calcMaxScore = (function() {
   };
 
   return {
-    'getDpPath':getDpPath,
-    'getDpScore':getDpScore,
-    'setStrokes':setStrokes,
+    'getDpPath': function() {
+      if(strokes == undefined)
+        return undefined;
+      return getDpPath(0, strokes.length - 1);
+    },
+    'getDpScore': function() {
+      if(strokes == undefined)
+        return undefined;
+      return getDpScore(0, strokes.length - 1);
+    },
+    'setStrokes': setStrokes,
   };
 }());
