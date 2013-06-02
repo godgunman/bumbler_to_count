@@ -17,9 +17,6 @@ var calcMaxScore = (function() {
       console.log(result);
       if (!result)
         return 0;
-      if (result.name[0] === "=") {
-          weight *= 30;
-      }
       return result.score * weight;
   }
 
