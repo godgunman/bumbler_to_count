@@ -1,6 +1,7 @@
 var jellyfishAudio = (function() {
 
   // require js/constants.js
+  // require js/utils.js
 
   var audio = document.getElementById("speech");
   var stingWord = function (word) {
@@ -8,6 +9,14 @@ var jellyfishAudio = (function() {
       return sting(MAP[word]); 
     } else {
       return undefined;
+    }
+  };
+
+  var stingSequence(formula) {
+    formula = delWhiteSpace(formula);
+    //FIXME asynchronous
+    for (s in formula) {
+      stingWord(s);
     }
   };
 
