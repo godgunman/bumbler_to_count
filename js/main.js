@@ -1,4 +1,5 @@
 $( function () {
+    // require js/history.js
     // @see .dev file for usage example
     all_strokes = [];
     gesture = $.gesture()               // gesture recognition instance
@@ -60,6 +61,17 @@ $( function () {
                 console.log(eq);
                 eq = eq.replace('--', '=');
                 console.log(eq);
+
+                if (eq.indexOf('=')!=-1) {
+                  try {
+                    eq = eq.slice(0, -1);
+                    eq = eq + '=' + eval(eq);
+                    addHistory(eq);
+                  } catch (err) {
+                    console.log(err);
+                    eq += '=';
+                  } 
+                }
                 $('#equation').text(eq);
             } );
     $( '.container .row .span8' ).prepend( board );
