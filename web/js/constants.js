@@ -1,7 +1,7 @@
   var MAP = {
     '0': {
-      'start': 0,
-      'duration': 0
+      'start': 11.95,
+      'duration': 0.34
     },
     '1': {
       'start': 0.18,
@@ -62,6 +62,10 @@
     '100m': {
       'start': 9.02,
       'duration': 0.20
+    },
+    '1000b': {
+      'start': 12.29,
+      'duration': 0.32
     },
     '+': {
       'start': 9.23,
