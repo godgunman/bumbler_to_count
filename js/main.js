@@ -1,4 +1,5 @@
 $( function () {
+    // require js/history.js
     // @see .dev file for usage example
     all_strokes = [];
     gesture = $.gesture()               // gesture recognition instance
@@ -36,8 +37,9 @@ $( function () {
                 board.triggerHandler( 'run.dp' );
             } )
             .on( 'reset.gesture', function () {
-                all_strokes = [];
                 console.log( 'Board & gesture recording cleared' );
+                all_strokes = [];
+                $('#equation').text('');
             } )
             .on( 'run.dp', function () {
                 console.log('run dp');
@@ -56,26 +58,43 @@ $( function () {
                 }
                 gesture.strokes = all_strokes.slice(current);
                 eq += gesture.recognize(true).name[0];
-                console.log(eq);
                 eq = eq.replace('--', '=');
-                console.log(eq);
+
+                if (eq.indexOf('=')!=-1) {
+                    try {
+                        var result = eval(eq.slice(0, -1));
+                        if(result != undefined) {
+                          eq += result ;
+                          addHistory(eq);
+                        }
+                    } catch (err) {
+                        console.log(err);
+                    }
+                    jellyfishAudio.stingSequence(eq);
+                }
+                else {
+                    jellyfishAudio.stingSequence(eq[eq.length - 1]);
+                }
+
                 $('#equation').text(eq);
             } );
     $( '.container .row .span8' ).prepend( board );
 
     // load json
-    $.getJSON('data/model.json', function (data) {
-//        gesture.gestures = data;
-    });
+//    $.getJSON('data/model.json', function (data) { gesture.gestures = data; });
     $.getJSON('data/1.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/2.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/3.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
-    $.getJSON('data/4.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
-    $.getJSON('data/5.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+//    $.getJSON('data/4.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/42.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+//    $.getJSON('data/5.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/52.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/6.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
-    $.getJSON('data/7.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+//    $.getJSON('data/7.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/72.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/8.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/9.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/0.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/add.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/sub.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/mul.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
@@ -89,3 +108,4 @@ $( function () {
     });
 } );
 
+// vim: expandtab tabstop=4 shiftwidth=4:
