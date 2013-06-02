@@ -2,6 +2,13 @@ var retrieveHistory = function(e) {
 	$(e.target.parentNode).addClass("active");
 	$('#myModal').modal('show');
 	$('#modal-header').html('<h3>'+e.target.innerHTML+'</h3>');
+  
+  var button = $('#modal-btn-spaek');
+  button.off('click');
+  button.click(function(e2) {
+    var text = e.target.innerHTML;
+    jellyfishAudio.stingSequence(text);
+  });
 };
 
 var addHistory = function(){

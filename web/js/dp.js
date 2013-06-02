@@ -1,8 +1,13 @@
 var calcMaxScore = (function() {
   var strokes;
+  var gesture;
 
   var setStrokes = function (input) {
       strokes = input;
+  };
+
+  var setGesture = function (g) {
+      gesture = g;
   };
 
   var guess = function (strokes_guess) {
@@ -67,6 +72,11 @@ var calcMaxScore = (function() {
     'getDpPath': function() {
       if(strokes == undefined)
         return undefined;
+
+      if (!dpPath[[0, strokes.length - 1]]) {
+        getDpScore(0, strokes.length - 1);
+      }
+
       return getDpPath(0, strokes.length - 1);
     },
     'getDpScore': function() {
@@ -75,5 +85,6 @@ var calcMaxScore = (function() {
       return getDpScore(0, strokes.length - 1);
     },
     'setStrokes': setStrokes,
+    'setGesture': setGesture,
   };
 }());
