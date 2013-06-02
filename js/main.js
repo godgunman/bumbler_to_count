@@ -65,7 +65,7 @@ $( function () {
                         var result = eval(eq.slice(0, -1));
                         if(result != undefined) {
                           eq += result ;
-                          addHistory(eq);
+                          addHistory(eq, board[0].toDataURL());
                         }
                     } catch (err) {
                         console.log(err);
