@@ -43,12 +43,22 @@ var jellyfishAudio = (function() {
 
     console.log(splited);
 
+    var afterEqual = false;
     var FUNC = [];
     for (i in splited) {
       var s = splited[i];
       console.log(s);
+
+      if (s == '=') {
+        afterEqual = true;
+      }
+
       if (isNaN(s)) {
-        FUNC.push(bumblerSpeak(s));
+        if (s=='-' && afterEqual == true) {
+          FUNC.push(bumblerSpeak('neg'));
+        } else {
+          FUNC.push(bumblerSpeak(s));
+        }
       } else {
         var completeNum = numTrans(s);
         for ( x in completeNum ){
