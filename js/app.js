@@ -66,6 +66,9 @@ var jellyfishAudio = (function() {
         }
       }
     }
+
+    FUNC.push(bumblerSpeak('thanks'));
+
     next = function() {
       $(document).dequeue("myQueue");
     };
