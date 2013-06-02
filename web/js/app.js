@@ -6,7 +6,7 @@ var jellyfishAudio = (function() {
   var audio = document.getElementById("speech");
   var stingWord = function (word) {
     if(MAP[word]) {
-      return sting(MAP[word]); 
+      sting(MAP[word]); 
     } else {
       return undefined;
     }
@@ -14,21 +14,19 @@ var jellyfishAudio = (function() {
 
   var stingSequence = function(formula) {
     formula = delWhiteSpace(formula);
-
     var FUNC = [];
-    for (s in formula) {
-      stingWord(s);
-      FUNC.push(function() {
-        return stingWord(s);
-      });
+    for (i in formula) {
+      var s = formula[i];
+      var f = function(w) {
+        return function () { sting(MAP[w])};
+      }
+      FUNC.push(f(s));
     }
-
-    var next = function() {
+    next = function() {
       $(document).dequeue("myQueue");
-    }
+    };
     $(document).queue("myQueue",FUNC);
     next();
-
   };
 
   var sting = function (option) {
@@ -39,7 +37,7 @@ var jellyfishAudio = (function() {
     audio.play();
     return setTimeout(function() {
       audio.pause();
-      if (next) {
+      if (typeof(next) != 'undefined') {
         next();
       }
     }, duration * 1000);
@@ -47,6 +45,7 @@ var jellyfishAudio = (function() {
 
   return {
     'sting': sting,
+    'stingSequence': stingSequence,
     'stingWord': stingWord,
     'audio': audio,
   };
