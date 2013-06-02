@@ -108,6 +108,11 @@ $( function () {
         console.log($('#equation').val());
         jellyfishAudio.stingSequence($('#equation').val());
     });
+
+
+    $('#brand').click( function(e) {
+        jellyfishAudio.stingWord('thanks')
+    });
 } );
 
 // vim: expandtab tabstop=4 shiftwidth=4:
