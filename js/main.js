@@ -36,8 +36,9 @@ $( function () {
                 board.triggerHandler( 'run.dp' );
             } )
             .on( 'reset.gesture', function () {
-                all_strokes = [];
                 console.log( 'Board & gesture recording cleared' );
+                all_strokes = [];
+                $('#equation').text('');
             } )
             .on( 'run.dp', function () {
                 console.log('run dp');
