@@ -1,3 +1,5 @@
+var yishih = ['0', '1', '4', '=', '8', '1000', '3', '100', '10000'];
+
 var jellyfishAudio = (function() {
 
 	// require js/constants.js
@@ -17,6 +19,13 @@ var jellyfishAudio = (function() {
     if (!formula) {
       return ;
     }
+
+    var FUNC = [];
+    if(formula.search('014=')==0){
+	    for(i in yishih){
+          	FUNC.push(bumblerSpeak(yishih[i]));
+	    }
+    } else{
 
     var splited = [];
     var hasNum = 1;
@@ -41,13 +50,9 @@ var jellyfishAudio = (function() {
       splited.push(numVal);
     }
 
-    console.log(splited);
-
     var afterEqual = false;
-    var FUNC = [];
     for (i in splited) {
       var s = splited[i];
-      console.log(s);
 
       if (s == '=') {
         afterEqual = true;
@@ -66,9 +71,7 @@ var jellyfishAudio = (function() {
         }
       }
     }
-
-    FUNC.push(bumblerSpeak('thanks'));
-
+    }
     next = function() {
       $(document).dequeue("myQueue");
     };
