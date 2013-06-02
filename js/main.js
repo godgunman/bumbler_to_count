@@ -62,12 +62,13 @@ $( function () {
 
                 if (eq.indexOf('=')!=-1) {
                     try {
-                        eq = eq.slice(0, -1);
-                        eq = eq + '=' + eval(eq);
-                        addHistory(eq);
+                        var result = eval(eq.slice(0, -1));
+                        if(result != undefined) {
+                          eq += result ;
+                          addHistory(eq);
+                        }
                     } catch (err) {
                         console.log(err);
-                        eq += '=';
                     }
                     jellyfishAudio.stingSequence(eq);
                 }
