@@ -73,7 +73,7 @@ var calcMaxScore = (function() {
       if(strokes == undefined)
         return undefined;
 
-      if (!dpPath[[0, strokes.length]]) {
+      if (!dpPath[[0, strokes.length - 1]]) {
         getDpScore(0, strokes.length - 1);
       }
 
