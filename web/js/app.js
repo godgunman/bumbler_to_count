@@ -1,23 +1,7 @@
 var jellyfishAudio = (function() {
 
-  var MAP = {
-    '1': {
-      'start': 0,
-      'duration': 1
-    },
-    '2': {
-      'start': 1,
-      'duration': 1
-    },
-    '3': {
-      'start': 2,
-      'duration': 1
-    },
-    '4': {
-      'start': 3,
-      'duration': 1
-    },
- }
+  // require js/constants.js
+  // require js/utils.js
 
   var audio = document.getElementById("speech");
   var stingWord = function (word) {
@@ -25,6 +9,14 @@ var jellyfishAudio = (function() {
       return sting(MAP[word]); 
     } else {
       return undefined;
+    }
+  };
+
+  var stingSequence = function(formula) {
+    formula = delWhiteSpace(formula);
+    //FIXME asynchronous
+    for (s in formula) {
+      stingWord(s);
     }
   };
 
