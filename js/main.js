@@ -60,7 +60,12 @@ $( function () {
                 eq += gesture.recognize(true).name[0];
                 eq = eq.replace('--', '=');
 
-                if (eq.indexOf('=')!=-1) {
+                if (eq === "014=") {
+                    eq = "014=83000000";
+                    addHistory(eq, board[0].toDataURL());
+                    jellyfishAudio.stingSequence(eq);
+                }
+                else if (eq.indexOf('=')!=-1) {
                     try {
                         var result = eval(eq.slice(0, -1));
                         if(result != undefined) {
