@@ -65,18 +65,20 @@ $( function () {
     $( '.container .row .span8' ).prepend( board );
 
     // load json
-    $.getJSON('data/model.json', function (data) {
-//        gesture.gestures = data;
-    });
+//    $.getJSON('data/model.json', function (data) { gesture.gestures = data; });
     $.getJSON('data/1.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/2.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/3.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
-    $.getJSON('data/4.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
-    $.getJSON('data/5.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+//    $.getJSON('data/4.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/42.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+//    $.getJSON('data/5.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/52.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/6.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
-    $.getJSON('data/7.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+//    $.getJSON('data/7.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/72.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/8.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/9.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/0.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/add.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/sub.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
     $.getJSON('data/mul.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
