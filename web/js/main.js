@@ -42,5 +42,8 @@ $( function () {
     $.getJSON('data/model.json', function (data) {
         gesture.gestures = data;
     });
+    $.getJSON('data/mock.json', function (data) {
+        all_strokes = data;
+    });
 } );
 
