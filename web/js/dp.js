@@ -27,7 +27,8 @@ var calcMaxScore = (function() {
 
       if (start == end) {
         dpPath[[start, end]] = start;
-        return guess(strokes.slice(start, end+1)) ;
+        dbTable[[start, end]] = guess(strokes.slice(start, end+1)) ;
+        return dbTable[[start, end]];
       }
 
       var score = 0;
@@ -60,12 +61,11 @@ var calcMaxScore = (function() {
         return;
       }
       var split = dpTable[[start, end]];
-      dpPathSplit.push(split);
       getDpPath(start, split);
+      dpPathSplit.push(split);
       getDpPath(split+1, end);
     }
     dfs(start, end);
-    dpPathSplit.sort(function(a, b){return a-b;});
     return dpPathSplit;
   };
 
