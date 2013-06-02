@@ -18,47 +18,73 @@ var jellyfishAudio = (function() {
       return ;
     }
 
-		numSeq = formula.split(/[+=\-\*\/]/gi);
-		signSeq = formula.match(/[+=\-\*\/]/gi);
-		var FUNC = [];
-		for (i in numSeq) {
-			var s = numSeq[i];
-			var completeNum = numTrans(parseInt(s));
-			for ( x in completeNum ){
-				FUNC.push(bumblerSpeak(completeNum[x]));
-			}
-			if(i!=numSeq.length-1){
-				FUNC.push(bumblerSpeak(signSeq[i]));
-			}
-		}
-		next = function() {
-			$(document).dequeue("myQueue");
-		};
-		$(document).queue("myQueue",FUNC);
-		next();
-	};
+    var splited = [];
+    var hasNum = 1;
+    var numVal = 0;
+    for (i in formula) {
+      var s = formula[i];
+      if (isNaN(s)) {
 
-	var bumblerSpeak = function(w) {
-		return function () { sting(MAP[w])};
-	}
+        if (hasNum) {
+          splited.push(numVal);
+        }
+
+        hasNum = 0;
+        numVal = 0;
+
+        splited.push(s);
+      } else {
+        hasNum = 1;
+        numVal = numVal*10 + parseInt(s, 10);
+      }
+    }
+    if (hasNum) {
+      splited.push(numVal);
+    }
+
+    console.log(splited);
+
+    var FUNC = [];
+    for (i in splited) {
+      var s = splited[i];
+      console.log(s);
+      if (isNaN(s)) {
+        FUNC.push(bumblerSpeak(s));
+      } else {
+        var completeNum = numTrans(s);
+        for ( x in completeNum ){
+          FUNC.push(bumblerSpeak(completeNum[x]));
+        }
+      }
+    }
+    next = function() {
+      $(document).dequeue("myQueue");
+    };
+    $(document).queue("myQueue",FUNC);
+    next();
+  };
+
+  var bumblerSpeak = function(w) {
+    return function () { sting(MAP[w])};
+  }
 
   var sting = function (option) {
     if (!option || option.hasOwnProperty('start') ==false 
-                || option.hasOwnProperty('duration') == false ) {
-      return;
-    }
+        || option.hasOwnProperty('duration') == false ) {
+          return;
+        }
 
-    var start = option['start'];
-    var duration = option['duration'];
+        var start = option['start'];
+        var duration = option['duration'];
 
-    audio.currentTime = start; 
-    audio.play();
-    return setTimeout(function() {
-      audio.pause();
-      if (typeof(next) != 'undefined') {
-        next();
-      }
-    }, duration * 1000);
+        audio.currentTime = start; 
+        audio.play();
+        return setTimeout(function() {
+          audio.pause();
+          if (typeof(next) != 'undefined') {
+            next();
+          }
+        }, duration * 1000);
   };
 
   return {
