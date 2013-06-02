@@ -13,13 +13,22 @@ var calcMaxScore = (function() {
   var guess = function (strokes_guess) {
       gesture.strokes = strokes_guess;
       var result = gesture.recognize(true);
-      return result ? result.score : 0;
+      var weight = strokes_guess.length * 10;
+      console.log(result);
+      if (!result)
+        return 0;
+      if (result.name[0] === "=") {
+          weight *= 30;
+      }
+      return result.score * weight;
   }
 
   var dpTable = {};
   var dpPath = {};
 
   var getDpScore = function (start, end) {
+    dpTable = {};
+    dpPath = {};
     var dp = function (start, end) {
       if (dpTable[[start,end]] != undefined) {
         return dpTable[[start,end]];
@@ -50,7 +59,7 @@ var calcMaxScore = (function() {
     return dp(start, end);
   };
 
-  var getDpPath = function (start, end) { 
+  var getDpPath = function (start, end) {
     var dpPathSplit = [];
     var dfs = function (start, end) {
       if (dpPath[[start, end]] == -1) {
@@ -73,9 +82,7 @@ var calcMaxScore = (function() {
       if(strokes == undefined)
         return undefined;
 
-      if (!dpPath[[0, strokes.length]]) {
-        getDpScore(0, strokes.length - 1);
-      }
+      getDpScore(0, strokes.length - 1);
 
       return getDpPath(0, strokes.length - 1);
     },

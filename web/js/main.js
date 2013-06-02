@@ -7,7 +7,8 @@ $( function () {
             .on( 'keyup.gesture', function () {
                 if ( event.which == 32 ) // space
                     return board.triggerHandler( 'recognize.gesture' );
-                if ( event.which == 13 ) // enter
+                //if ( event.which == 13 ) // enter
+                if ( event.which == 76 ) // l
                     return board.triggerHandler( 'learn.gesture' );
                 if ( event.which == 27 ) // escape
                     return board.triggerHandler( 'reset.gesture' );
@@ -31,20 +32,55 @@ $( function () {
             .on( 'save.gesture', function () {
                 var result = event.result;
                 all_strokes.push(result[result.length - 1]);
-                console.log( 'Stroke #' + result.length + ': ' + result );
+                console.log( 'Stroke #' + all_strokes.length);
+                board.triggerHandler( 'run.dp' );
             } )
             .on( 'reset.gesture', function () {
+                all_strokes = [];
                 console.log( 'Board & gesture recording cleared' );
+            } )
+            .on( 'run.dp', function () {
+                console.log('run dp');
+                calcMaxScore.setStrokes(all_strokes);
+                calcMaxScore.setGesture(gesture);
+                var score = calcMaxScore.getDpScore();
+                var path = calcMaxScore.getDpPath();
+                console.log(path);
+                var current = 0;
+                var eq = "";
+                for (var i = 0; i < path.length; i++) {
+                    console.log(current, path[i] + 1);
+                    gesture.strokes = all_strokes.slice(current, path[i] + 1);
+                    eq += gesture.recognize(true).name[0];
+                    current = path[i] + 1;
+                }
+                gesture.strokes = all_strokes.slice(current);
+                eq += gesture.recognize(true).name[0];
+                console.log(eq);
+                eq = eq.replace('--', '=');
+                console.log(eq);
+                $('#equation').text(eq);
             } );
     $( '.container .row .span8' ).prepend( board );
 
     // load json
     $.getJSON('data/model.json', function (data) {
-        gesture.gestures = data;
+//        gesture.gestures = data;
     });
-    $.getJSON('data/mock.json', function (data) {
-        all_strokes = data;
-    });
+    $.getJSON('data/1.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/2.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/3.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/4.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/5.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/6.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/7.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/8.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/9.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/add.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/sub.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/mul.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/div.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
+    $.getJSON('data/eq.json', function (data) { for (var i in data) gesture.gestures[i] = data[i]; });
 
     // bind event
     $('#speak').click( function() {
