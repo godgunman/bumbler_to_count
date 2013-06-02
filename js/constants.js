@@ -91,4 +91,8 @@
       'start': 11.07,
       'duration': 0.80
     },
+    'neg': {
+      'start': 12.69,
+      'duration': 0.34
+    },
  };
