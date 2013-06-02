@@ -38,6 +38,9 @@ var numTrans = function(num){
 			}
 
 			if(numArr[x]!=0){
+				if(numArr[x]==1 && x ==0 && res ==2){
+					speakArr.pop();
+				}
 				switch(res)
 				{
 					case 0:
@@ -75,7 +78,6 @@ var numTrans = function(num){
 				}
 			}
 		}
-
-		console.log(speakArr);
+		return speakArr;
 	}
 };

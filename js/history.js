@@ -33,3 +33,4 @@ $('#modal-btn-close').click(closeModal);
 addHistory('32+3+9*2=53');
 addHistory('1+1+1=3');
 addHistory('0+1+4=5');
+addHistory('1-1=0');
