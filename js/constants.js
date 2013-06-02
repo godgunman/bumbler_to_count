@@ -1,7 +1,7 @@
   var MAP = {
     '0': {
-      'start': 11.95,
-      'duration': 0.34
+      'start': 14.6,
+      'duration': 0.295
     },
     '1': {
       'start': 0.18,
@@ -44,55 +44,55 @@
       'duration': 0.60
     },
     '2-2': {
-      'start': 7.92,
+      'start': 7.875,
       'duration': 0.34
     },
     '100': {
-      'start': 8.25,
-      'duration': 0.20
+      'start': 8.375,
+      'duration': 0.325
     },
     '1000': {
-      'start': 8.45,
-      'duration': 0.39
+      'start': 8.762,
+      'duration': 0.64
     },
     '10000': {
-      'start': 8.84,
-      'duration': 0.20
+      'start': 9.337,
+      'duration': 0.406
     },
     '100m': {
-      'start': 9.02,
-      'duration': 0.20
+      'start': 9.737,
+      'duration': 0.275
     },
     '1000b': {
-      'start': 12.29,
-      'duration': 0.32
+      'start': 15.00,
+      'duration': 0.235
     },
     '+': {
-      'start': 9.23,
-      'duration': 0.25
+      'start': 10.2,
+      'duration': 0.272
     },
     '-': {
-      'start': 9.48,
-      'duration': 0.27
+      'start': 10.6,
+      'duration': 0.286
     },
     '*': {
-      'start': 9.75,
-      'duration': 0.35
+      'start': 11.0,
+      'duration': 0.493
     },
     '/': {
-      'start': 10.12,
-      'duration': 0.26
+      'start': 11.6,
+      'duration': 0.358
     },
     '=': {
-      'start': 10.37,
-      'duration': 0.60
+      'start': 12,
+      'duration': 1
     },
     'thanks': {
-      'start': 11.07,
-      'duration': 0.80
+      'start': 13.8,
+      'duration': 0.727
     },
     'neg': {
-      'start': 12.69,
-      'duration': 0.34
+      'start': 15.4,
+      'duration': 0.3
     },
  };
