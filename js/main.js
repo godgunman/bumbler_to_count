@@ -39,7 +39,7 @@ $( function () {
             .on( 'reset.gesture', function () {
                 console.log( 'Board & gesture recording cleared' );
                 all_strokes = [];
-                $('#equation').text('');
+                $('#equation').val('');
             } )
             .on( 'run.dp', function () {
                 console.log('run dp');
