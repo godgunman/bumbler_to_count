@@ -45,5 +45,11 @@ $( function () {
     $.getJSON('data/mock.json', function (data) {
         all_strokes = data;
     });
+
+    // bind event
+    $('#speak').click( function() {
+        console.log($('#equation').text());
+        jellyfishAudio.stingSequence($('#equation').text());
+    });
 } );
 
